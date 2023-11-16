@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
+    <title>OlivaChain</title>
+</head>
+
+<body style="background-color: rgb(6, 6, 40); color: white;">
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 bg-dark text-center p-4 rounded-lg" style="width: 600px; height: 300px;">            <h1 class="mb-4">DApp de Aceite de Oliva</h1>
+            <h6 class="text-muted">Decentralized Olive-managment App</h6>
+            <div class="my-4">
+                <span>Wallet:</span>
+                <div id="account" class="font-weight-bold"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Formulario para crear un nuevo producto -->
+<div class="container my-5">
+    <h2 class="mb-3">Crear un Nuevo Producto</h2>
+    <form id="crearProductoForm" class="mb-4">
+        <div class="form-group">
+            <label for="productoId">ID del Producto:</label>
+            <input type="text" name="Id" id="productoId" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="nombreProducto">Nombre del Producto:</label>
+            <input type text="text" name="title" id="nombreProducto" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="fechaProduccion">Fecha de Producción:</label>
+            <input type="date" name="date" id="fechaProduccion" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="precioSalida">Precio de Salida:</label>
+            <input type="number" name="price" id="precioSalida" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Producto</button>
+    </form>
+
+    <!-- Lista de productos -->
+    <h2 class="my-4">Lista de Productos</h2>
+    <ul id="listaProductos" class="list-group"></ul>
+</div>
+
+<!-- Scripts -->
+<script src="./libs/@truffle/contract/browser-dist/truffle-contract.min.js"></script>
+<script src="./app.js"></script>
+<script src="./FunctionManager.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Storage DApp</title>
+</head>
+<body>
+    <h1>Data Storage DApp</h1>
+
+    <h2>Introducir Datos</h2>
+    <form id="dataForm">
+        <label for="dataInput">Datos:</label>
+        <input type="text" id="dataInput" required>
+        <button type="submit">Guardar Datos</button>
+    </form>
+
+    <h2>Datos Almacenados</h2>
+    <div id="storedData"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dataForm = document.getElementById("dataForm");
+            const dataInput = document.getElementById("dataInput");
+            const storedData = document.getElementById("storedData");
+
+            // Reemplaza la dirección del contrato con la dirección de tu contrato desplegado en la red
+            const contractAddress = "DIRECCION_DE_TU_CONTRATO";
+
+            dataForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const inputData = dataInput.value;
+                if (!inputData) return;
+
+                // Conéctate a la instancia del contrato
+                const contract = new web3.eth.Contract(abi, contractAddress);
+
+                // Crea una transacción para actualizar los datos en el contrato
+                const accounts = await web3.eth.getAccounts();
+                await contract.methods.set(inputData).send({ from: accounts[0] });
+
+                // Actualiza la vista de los datos almacenados
+                const storedDataValue = await contract.methods.get().call();
+                storedData.textContent = "Datos Almacenados: " + storedDataValue;
+            });
+        });
+    </script>
+</body>
+</html>
